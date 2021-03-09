@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Action RPG/World/Bush.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Action RPG/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Action RPG/World/GrassBackground.png" type="Texture" id=3]
+
+[sub_resource type="TileSet" id=1]
+
+[node name="World" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 320, 176 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 2 )]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="YSort"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSort/StaticBody2D"]
+polygon = PoolVector2Array( 64, 0, 0, 0, 0, 176, 320, 176, 320, 0, 264, 0, 232, 56, 256, 96, 248, 136, 144, 144, 40, 128, 40, 88, 72, 64, 40, 56 )
+
+[node name="Bush" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 64, 96 )
+
+[node name="Bush2" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 176, 104 )
